@@ -1,6 +1,6 @@
 BleedEffect is a plugin for SCP: Secret Lab. It adds a... bleed effect... to players when they take damage from configurable damage types.
 
-You can always find the latests dll [here](https://github.com/steven4547466/BleedEffect/releases/latest). This plugin requires EXILED, which you can find [here](https://github.com/galaxy119/EXILED).
+You can always find the latest dll [here](https://github.com/steven4547466/BleedEffect/releases/latest). This plugin requires EXILED, which you can find [here](https://github.com/galaxy119/EXILED).
 
 Please report any issues, or feature requests!
 
