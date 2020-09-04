@@ -104,7 +104,7 @@ namespace BleedEffect.Handlers
                             amount = Math.Pow(HealthPerSec, power);
                         } else
                         {
-                            amount += HealthPerSecInc;
+                            amount += HealthPerSecInc*(ent.Value-1);
                         }
                     }
                     Log.Debug($"Player with id {ent.Key} has drained {amount} health.", BleedEffect.Instance.Config.Debug);
