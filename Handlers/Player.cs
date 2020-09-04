@@ -13,6 +13,8 @@ namespace BleedEffect.Handlers
         public Dictionary<int, int> beenShot = new Dictionary<int, int>();
         public Dictionary<int, int> bleeding = new Dictionary<int, int>();
         public List<DamageTypes.DamageType> allowedDamageTypes = new List<DamageTypes.DamageType>();
+        public bool affectsScps = false;
+        public List<RoleType> affectedScps = null;
 
         public void Init()
         {
@@ -26,10 +28,29 @@ namespace BleedEffect.Handlers
             if (config.GrenadeEnabled) allowedDamageTypes.Add(DamageTypes.Grenade);
             if (config.SCP939Enabled) allowedDamageTypes.Add(DamageTypes.Scp939);
             if (config.SCP049_2Enabled) allowedDamageTypes.Add(DamageTypes.Scp0492);
+            if (config.AffectsScps)
+            {
+                affectsScps = true;
+                affectedScps = new List<RoleType>();
+                if (config.Affects049) affectedScps.Add(RoleType.Scp049);
+                if (config.Affects049_2) affectedScps.Add(RoleType.Scp0492);
+                if (config.Affects096) affectedScps.Add(RoleType.Scp096);
+                if (config.Affects106) affectedScps.Add(RoleType.Scp106);
+                if (config.Affects173) affectedScps.Add(RoleType.Scp173);
+                if (config.Affects939)
+                {
+                    affectedScps.Add(RoleType.Scp93953);
+                    affectedScps.Add(RoleType.Scp93989);
+                }
+            }
         }
         public void OnHurting(HurtingEventArgs ev)
         {
             Log.Debug($"Player with id {ev.Target.Id} has taken damage from {ev.DamageType.name}.", BleedEffect.Instance.Config.Debug);
+            if (affectsScps)
+            {
+                if (ev.Target.Team == Team.SCP && !affectedScps.Contains(ev.Target.Role)) return;
+            }
             if (!allowedDamageTypes.Contains(ev.DamageType))
             {
                 Log.Debug($"{ev.DamageType.name} has not passed allowed damage types.", BleedEffect.Instance.Config.Debug);

@@ -47,5 +47,14 @@ namespace BleedEffect
         public bool SCP500StopsBleeding { get; set; } = true;
         public bool PainkillersStopBleeding { get; set; } = false;
         public bool AdrenalineStopsBleeding { get; set; } = false;
+
+        [Description("Affect SCPs.")]
+        public bool AffectsScps { get; set; } = false;
+        public bool Affects173 { get; set; } = false;
+        public bool Affects939 { get; set; } = false;
+        public bool Affects049 { get; set; } = false;
+        public bool Affects049_2 { get; set; } = false;
+        public bool Affects096 { get; set; } = false;
+        public bool Affects106 { get; set; } = false;
     }
 }
