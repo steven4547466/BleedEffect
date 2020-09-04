@@ -31,3 +31,12 @@ Which medical items stop bleeding:
 - SCP500StopsBleeding (true)
 - PainkillersStopBleeding (false)
 - AdrenalineStopsBleeding (false)
+
+Which SCPs get affected, if any:
+- AffectsScps (false)
+- Affects173 (false)
+- Affects939 (false)
+- Affects049 (false)
+- Affects049_2 (false)
+- Affects096 (false)
+- Affects106 (false)
