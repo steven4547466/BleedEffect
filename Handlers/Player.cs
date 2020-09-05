@@ -47,9 +47,10 @@ namespace BleedEffect.Handlers
         public void OnHurting(HurtingEventArgs ev)
         {
             Log.Debug($"Player with id {ev.Target.Id} has taken damage from {ev.DamageType.name}.", BleedEffect.Instance.Config.Debug);
-            if (affectsScps)
+            if (!affectsScps && ev.Target.Team == Team.SCP) return;
+            else if (ev.Target.Team == Team.SCP)
             {
-                if (ev.Target.Team == Team.SCP && !affectedScps.Contains(ev.Target.Role)) return;
+                if (!affectedScps.Contains(ev.Target.Role)) return;
             }
             if (!allowedDamageTypes.Contains(ev.DamageType))
             {
