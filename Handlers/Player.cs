@@ -46,6 +46,7 @@ namespace BleedEffect.Handlers
         }
         public void OnHurting(HurtingEventArgs ev)
         {
+            if (beenShot == null || bleeding == null) return;
             Log.Debug($"Player with id {ev.Target.Id} has taken damage from {ev.DamageType.name}.", BleedEffect.Instance.Config.Debug);
             if (!affectsScps && ev.Target.Team == Team.SCP) return;
             else if (ev.Target.Team == Team.SCP)
@@ -77,29 +78,32 @@ namespace BleedEffect.Handlers
 
         public void OnMedicalItemUsed(UsedMedicalItemEventArgs ev)
         {
+            if (beenShot == null || bleeding == null) return;
             if (ev.Item == ItemType.Adrenaline && !BleedEffect.Instance.Config.AdrenalineStopsBleeding) return;
             if (ev.Item == ItemType.Painkillers && !BleedEffect.Instance.Config.PainkillersStopBleeding) return;
             if (ev.Item == ItemType.Medkit && !BleedEffect.Instance.Config.MedKitStopsBleeding) return;
             if (ev.Item == ItemType.SCP500 && !BleedEffect.Instance.Config.SCP500StopsBleeding) return;
             if (beenShot.ContainsKey(ev.Player.Id)) beenShot.Remove(ev.Player.Id);
             if (bleeding.ContainsKey(ev.Player.Id)) bleeding.Remove(ev.Player.Id);
-
         }
 
         public void OnDied(DiedEventArgs ev)
         {
+            if (beenShot == null || bleeding == null) return;
             if (beenShot.ContainsKey(ev.Target.Id)) beenShot.Remove(ev.Target.Id);
             if (bleeding.ContainsKey(ev.Target.Id)) bleeding.Remove(ev.Target.Id);
         }
 
         public void OnLeft(LeftEventArgs ev)
         {
+            if (beenShot == null || bleeding == null) return;
             if (beenShot.ContainsKey(ev.Player.Id)) beenShot.Remove(ev.Player.Id);
             if (bleeding.ContainsKey(ev.Player.Id)) bleeding.Remove(ev.Player.Id);
         }
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
+            if (beenShot == null || bleeding == null) return;
             if (beenShot.ContainsKey(ev.Player.Id)) beenShot.Remove(ev.Player.Id);
             if (bleeding.ContainsKey(ev.Player.Id)) bleeding.Remove(ev.Player.Id);
         }
