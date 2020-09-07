@@ -16,7 +16,7 @@ namespace BleedEffect
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
         public override string Name { get; } = "BleedEffect";
         public override string Author { get; } = "Steven4547466";
-        public override Version Version { get; } = new Version(1, 0, 2);
+        public override Version Version { get; } = new Version(1, 0, 3);
         public override Version RequiredExiledVersion { get; } = new Version(2, 1, 2);
         public override string Prefix { get; } = "BleedEffect";
 
@@ -35,6 +35,7 @@ namespace BleedEffect
             base.OnEnabled();
             Log.Info("BleedEffect enabled.");
             RegisterEvents();
+            Coroutines = new List<CoroutineHandle>();
         }
 
         public override void OnDisabled()
