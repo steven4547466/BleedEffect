@@ -28,6 +28,7 @@ namespace BleedEffect.Handlers
             if (config.GrenadeEnabled) allowedDamageTypes.Add(DamageTypes.Grenade);
             if (config.SCP939Enabled) allowedDamageTypes.Add(DamageTypes.Scp939);
             if (config.SCP049_2Enabled) allowedDamageTypes.Add(DamageTypes.Scp0492);
+            if (config.Com15Enabled) allowedDamageTypes.Add(DamageTypes.Com15);
             if (config.AffectsScps)
             {
                 affectsScps = true;

@@ -38,6 +38,7 @@ namespace BleedEffect
         public bool Mp7Enabled { get; set; } = true;
         public bool P90Enabled { get; set; } = true;
         public bool UspEnabled { get; set; } = true;
+        public bool Com15Enabled { get; set; } = true;
         public bool GrenadeEnabled { get; set; } = true;
         public bool SCP049_2Enabled { get; set; } = true;
         public bool SCP939Enabled { get; set; } = true;
