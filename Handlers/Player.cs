@@ -120,6 +120,11 @@ namespace BleedEffect.Handlers
                 foreach (var ent in bleeding)
                 {
                     double amount = HealthPerSec;
+                    EPlayer p = EPlayer.Get(ent.Key);
+                    if (p.IsGodModeEnabled) 
+                    {
+                        bleeding.Remove(ent.Key);
+                    }
                     if (ent.Value > 1)
                     {
                         if(BleedEffect.Instance.Config.HealthDrainExponential)
@@ -136,7 +141,6 @@ namespace BleedEffect.Handlers
                         }
                     }
                     Log.Debug($"Player with id {ent.Key} has drained {amount} health.", BleedEffect.Instance.Config.Debug);
-                    EPlayer p = EPlayer.Get(ent.Key);
                     if (p.Health - amount <= 0)
                     {
                         bleeding.Remove(ent.Key);
