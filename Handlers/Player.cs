@@ -50,6 +50,7 @@ namespace BleedEffect.Handlers
             if (beenShot == null || bleeding == null) return;
             Log.Debug($"Player with id {ev.Target.Id} has taken damage from {ev.DamageType.name}.", BleedEffect.Instance.Config.Debug);
             if (!affectsScps && ev.Target.Team == Team.SCP) return;
+            if (ev.Target.IsGodModeEnabled) return;
             else if (ev.Target.Team == Team.SCP)
             {
                 if (!affectedScps.Contains(ev.Target.Role)) return;
